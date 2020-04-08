@@ -1,0 +1,2 @@
+rootProject.name='Nix Config Helper'
+include ':app'
