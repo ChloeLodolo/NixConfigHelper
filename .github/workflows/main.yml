@@ -22,7 +22,7 @@ jobs:
         run: bash ./gradlew assembleDebug --stacktrace
 
       - name: Rename APK
-        run: mv ./app/build/outputs/apk/debug/app-debug ./nix-configuration-helper.apk
+        run: mv ./app/build/outputs/apk/debug/app-debug.apk ./nix-configuration-helper.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v2-preview
