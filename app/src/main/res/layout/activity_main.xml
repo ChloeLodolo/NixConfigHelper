@@ -9,15 +9,15 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="267dp"
-        android:layout_height="37dp"
+        android:layout_width="273dp"
+        android:layout_height="53dp"
         android:ems="10"
         android:fontFamily="@font/montserrat_regular"
+        android:gravity="center"
         android:hint="example"
         android:inputType="textPersonName"
         android:textColor="@color/colorTextLight"
         android:textSize="15dp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
