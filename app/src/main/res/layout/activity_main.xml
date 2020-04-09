@@ -7,8 +7,23 @@
     android:background="@color/colorBg"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/searchLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="What are you looking for ?"
+        android:textColor="@color/colorText"
+        android:textSize="20dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/searchBox"
         android:layout_width="273dp"
         android:layout_height="53dp"
         android:ems="10"
@@ -23,19 +38,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.481" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_regular"
-        android:text="What are you looking for ?"
-        android:textColor="@color/colorText"
-        android:textSize="20dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
