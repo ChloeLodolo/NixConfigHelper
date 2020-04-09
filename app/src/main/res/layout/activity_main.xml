@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
-        android:text="What are you looking for ?"
+        android:text="@string/searchLabel"
         android:textColor="@color/colorText"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/searchBox"
@@ -29,7 +29,7 @@
         android:ems="10"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="center"
-        android:hint="example"
+        android:hint="@string/searchBox"
         android:inputType="textPersonName"
         android:textColor="@color/colorText"
         android:textSize="15dp"
@@ -44,16 +44,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="search in :"
+        android:text="@string/checkboxesLabel"
         android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxOptions"
+        app:layout_constraintStart_toStartOf="@+id/optionsCheckbox"
         app:layout_constraintTop_toBottomOf="@+id/searchBox" />
 
     <CheckBox
-        android:id="@+id/checkBoxOptions"
+        android:id="@+id/optionsCheckbox"
         android:layout_width="123dp"
         android:layout_height="34dp"
         android:layout_marginTop="8dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/checkboxesLabel" />
 
     <CheckBox
-        android:id="@+id/checkBoxPackages"
+        android:id="@+id/packagesCheckbox"
         android:layout_width="122dp"
         android:layout_height="34dp"
         android:layout_marginBottom="172dp"
@@ -74,25 +74,24 @@
         android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/colorText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/checkBoxOptions"
+        app:layout_constraintEnd_toEndOf="@+id/optionsCheckbox"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxOptions"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxOptions"
+        app:layout_constraintStart_toStartOf="@+id/optionsCheckbox"
+        app:layout_constraintTop_toBottomOf="@+id/optionsCheckbox"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="search"
+        android:text="@string/searchButton"
         android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/colorBg"
         android:backgroundTint="@color/colorAccent"
-        android:drawable="@drawable/rounded_corners"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxPackages"
+        app:layout_constraintTop_toBottomOf="@+id/packagesCheckbox"
         app:layout_constraintVertical_bias="0.187" />
 </androidx.constraintlayout.widget.ConstraintLayout>

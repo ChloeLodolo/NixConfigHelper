@@ -12,9 +12,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val searchButton = findViewById<Button>(R.id.searchButton)
-
         searchButton.setOnClickListener{
-            Toast.makeText(this, "Sorry, we found no corresponding resource in database", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.noResourceFound, Toast.LENGTH_LONG).show()
         }
     }
 }
