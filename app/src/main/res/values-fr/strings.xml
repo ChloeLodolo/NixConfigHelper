@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nix Config Helper</string>
+    <string name="searchBox">recherche</string>
+    <string name="checkboxesLabel">filtres</string>
+    <string name="noResourceFound">Désolé, nous n\'avons pas trouvé de ressource correspondant</string>
+</resources>

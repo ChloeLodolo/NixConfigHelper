@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val searchButton = findViewById<Button>(R.id.searchButton)
-        searchButton.setOnClickListener{
+        //val searchButton = findViewById<Button>(R.id.searchButton)
+        /*searchButton.setOnClickListener{
             //Toast.makeText(this, R.string.noResourceFound, Toast.LENGTH_LONG).show()
-        }
+        }*/
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
         fetchJson()
