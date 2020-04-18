@@ -3,10 +3,9 @@ package couclou.fr.nixconfighelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.Toast
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
@@ -58,8 +57,6 @@ class Feed(val page: Int, val count: Int, val totalPages: Int, val totalCount: I
 class Option(val keyname: String, val type: String, val readOnly: Boolean, val defaultValue: String, val description: String, val declarations: List<String>)
 
 class MainAdapter(val feed:Feed): RecyclerView.Adapter<CustomViewHolder>() {
-    val titles = listOf("Hello Wolrd","42","bite")
-
     override fun getItemCount(): Int {
         return feed.count
     }
@@ -71,8 +68,23 @@ class MainAdapter(val feed:Feed): RecyclerView.Adapter<CustomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val title = feed.elements.get(position).keyname
-        holder.view.textView_title.text = title
+        val keyname = feed.elements.get(position).keyname
+        val type = feed.elements.get(position).type
+        val readOnly = feed.elements.get(position).readOnly
+        val defaultValue = feed.elements.get(position).defaultValue
+        var description = feed.elements.get(position).description.replace("\n","")
+
+        holder.view.keynameValue.text = keyname
+        holder.view.typeValue.text = type
+        holder.view.readOnlyValue.text = readOnly.toString()
+        holder.view.defaultValueValue.text = defaultValue
+        holder.view.descriptionValue.text = description
+
+        var declarations: String = ""
+        for (declaration in feed.elements.get(position).declarations) {
+            declarations = "$declarations \n $declaration"
+        }
+        holder.view.declarationsValue.text = declarations
     }
 
 }
