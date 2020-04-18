@@ -1,10 +1,12 @@
 package couclou.fr.nixconfighelper
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +29,30 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView_main.layoutManager = LinearLayoutManager(this)
         fetchJson()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
+
+        val searchItem = menu?.findItem(R.id.menuSearchView)
+        val searchView = searchItem?.actionView as SearchView?
+        searchView?.isIconified = false
+        searchView?.isFocusable = true
+        searchView?.queryHint = ""
+
+        searchView?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+
+        })
+
+        return true
     }
 
     fun fetchJson() {
