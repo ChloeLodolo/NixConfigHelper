@@ -1,13 +1,14 @@
 package couclou.fr.nixconfighelper
 
+import android.content.Context
+import android.content.pm.ChangedPackages
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.SearchView
-import android.widget.TextView
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
@@ -22,18 +23,48 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //val searchButton = findViewById<Button>(R.id.searchButton)
-        /*searchButton.setOnClickListener{
-            //Toast.makeText(this, R.string.noResourceFound, Toast.LENGTH_LONG).show()
-        }*/
-
         recyclerView_main.layoutManager = LinearLayoutManager(this)
-        fetchJson()
+        //fetchJson()
+
+        val searchBox = findViewById<EditText>(R.id.searchBox)
+        searchBox.setOnEditorActionListener { v, actionId, event ->
+            when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    // clear focus on searchBox and remove soft keyboard
+                    searchBox.clearFocus()
+                    val view = this.currentFocus
+                    view?.let { v ->
+                        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+                        imm?.hideSoftInputFromWindow(v.windowToken, 0)
+                    }
+
+                    // fetch data accordingly to query and checkboxes
+                    val query: String = searchBox.text.toString()
+                    val optionsCheckBox = findViewById<CheckBox>(R.id.optionsCheckbox)
+                    val packagesCheckBox = findViewById<CheckBox>(R.id.packagesCheckbox)
+
+                    if (!optionsCheckBox.isChecked && !packagesCheckBox.isChecked) {
+                        // toaster pour indiquer qu'il faut sélectionner au moins un des deux
+                    }
+                    else if (optionsCheckBox.isChecked && !packagesCheckBox.isChecked) {
+                        fetchJson(query, "options/")
+                    }
+                    else if (!optionsCheckBox.isChecked && packagesCheckBox.isChecked) {
+                        fetchJson(query, "packages/")
+                    }
+                    else if (optionsCheckBox.isChecked && packagesCheckBox.isChecked) {
+                        fetchJson(query,"")
+                    }
+
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
-    fun fetchJson() {
-        println("Attempting to fetch Json")
-        val url = "https://nix-config.nicolasguilloux.eu/api/channels/nixos-19.09/options/search?query=boot"
+    private fun fetchJson(query: String, library: String) {
+        val url = "https://nix-config.nicolasguilloux.eu/api/channels/nixos-19.09/$library/search?query=$query"
         val request = Request.Builder().url(url).build()
         val client = OkHttpClient()
         client.newCall(request).enqueue(object: Callback {
@@ -83,8 +114,10 @@ class MainAdapter(val feed:Feed): RecyclerView.Adapter<CustomViewHolder>() {
         holder.view.descriptionValue.text = description
 
         var declarations: String = ""
-        for (declaration in feed.elements.get(position).declarations) {
-            declarations = "$declarations \n $declaration"
+        if (declarations.isNotEmpty()) {
+            for (declaration in feed.elements.get(position).declarations) {
+                declarations = "$declarations \n $declaration"
+            }
         }
         holder.view.declarationsValue.text = declarations
     }
