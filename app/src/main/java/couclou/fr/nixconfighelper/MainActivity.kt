@@ -31,30 +31,6 @@ class MainActivity : AppCompatActivity() {
         fetchJson()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.main_menu, menu)
-
-        val searchItem = menu?.findItem(R.id.menuSearchView)
-        val searchView = searchItem?.actionView as SearchView?
-        searchView?.isIconified = false
-        searchView?.isFocusable = true
-        searchView?.queryHint = ""
-
-        searchView?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return true
-            }
-
-        })
-
-        return true
-    }
-
     fun fetchJson() {
         println("Attempting to fetch Json")
         val url = "https://nix-config.nicolasguilloux.eu/api/channels/nixos-19.09/options/search?query=boot"
