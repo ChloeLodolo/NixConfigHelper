@@ -1,24 +1,20 @@
 package couclou.fr.nixconfighelper
 
 import android.content.Context
-import android.content.pm.ChangedPackages
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.elements_row.view.*
 import okhttp3.*
 import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -76,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                 val body = response.body()?.string()
                 println(body)
 
-                val gson = GsonBuilder().create()
+                val gson = GsonBuilder().registerTypeAdapter(Element::class.java, ElementAdapter()).create()
                 val feed = gson.fromJson(body,Feed::class.java)
                 runOnUiThread {
                     recyclerView_main.adapter = MainAdapter(feed)
@@ -84,46 +80,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-}
-
-class Feed(val page: Int, val count: Int, val totalPages: Int, val totalCount: Int, val elements:List<Option>)
-class Option(val keyname: String, val type: String, val readOnly: Boolean, val defaultValue: String, val description: String, val declarations: List<String>)
-
-class MainAdapter(val feed:Feed): RecyclerView.Adapter<CustomViewHolder>() {
-    override fun getItemCount(): Int {
-        return feed.count
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val cellForRow = layoutInflater.inflate(R.layout.elements_row, parent, false)
-        return CustomViewHolder(cellForRow)
-    }
-
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val keyname = feed.elements.get(position).keyname
-        val type = feed.elements.get(position).type
-        val readOnly = feed.elements.get(position).readOnly
-        val defaultValue = feed.elements.get(position).defaultValue
-        var description = feed.elements.get(position).description.replace("\n","")
-
-        holder.view.keynameValue.text = keyname
-        holder.view.typeValue.text = type
-        holder.view.readOnlyValue.text = readOnly.toString()
-        holder.view.defaultValueValue.text = defaultValue
-        holder.view.descriptionValue.text = description
-
-        var declarations: String = ""
-        if (declarations.isNotEmpty()) {
-            for (declaration in feed.elements.get(position).declarations) {
-                declarations = "$declarations \n $declaration"
-            }
-        }
-        holder.view.declarationsValue.text = declarations
-    }
-
-}
-
-class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-
 }
