@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchJson(query: String, library: String) {
-        val url = "https://nix-config.nicolasguilloux.eu/api/channels/nixos-19.09/$library/search?query=$query"
+        val url = "https://nix-config.nicolasguilloux.eu/api/channels/nixos-20.03/$library/search?query=$query"
         val request = Request.Builder().url(url).build()
         val client = OkHttpClient()
         client.newCall(request).enqueue(object: Callback {
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body()?.string()
-                println(body)
+                //println(body)
 
                 val gson = GsonBuilder().registerTypeAdapter(Element::class.java, ElementAdapter()).create()
                 val feed = gson.fromJson(body,Feed::class.java)

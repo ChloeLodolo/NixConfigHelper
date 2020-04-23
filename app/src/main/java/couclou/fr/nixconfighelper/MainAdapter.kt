@@ -3,6 +3,7 @@ package couclou.fr.nixconfighelper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.elements_row.view.*
 
 class MainAdapter(val feed:Feed): RecyclerView.Adapter<CustomViewHolder>() {
     override fun getItemCount(): Int {
@@ -16,25 +17,32 @@ class MainAdapter(val feed:Feed): RecyclerView.Adapter<CustomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        //println(feed.elements)
-        /*val keyname = feed.elements.get(position).keyname
-        val type = feed.elements.get(position).type
-        val readOnly = feed.elements.get(position).readOnly
-        val defaultValue = feed.elements.get(position).defaultValue
-        var description = feed.elements.get(position).description.replace("\n","")
+        if (feed.elements.get(position) is Option) {
+            val element = (feed.elements.get(position) as Option)
 
-        holder.view.keynameValue.text = keyname
-        holder.view.typeValue.text = type
-        holder.view.readOnlyValue.text = readOnly.toString()
-        holder.view.defaultValueValue.text = defaultValue
-        holder.view.descriptionValue.text = description
+            val keyname = element.keyname
+            val type = element.type
+            val readOnly = element.readOnly
+            val defaultValue = element.defaultValue
+            var description = element.description.replace("\n","")
 
-        var declarations: String = ""
-        if (declarations.isNotEmpty()) {
-            for (declaration in feed.elements.get(position).declarations) {
-                declarations = "$declarations \n $declaration"
+            holder.view.keynameValue.text = keyname
+            holder.view.typeValue.text = type
+            holder.view.readOnlyValue.text = readOnly.toString()
+            holder.view.defaultValueValue.text = defaultValue
+            holder.view.descriptionValue.text = description
+
+            var declarations: String = ""
+            if (declarations.isNotEmpty()) {
+                for (declaration in element.declarations) {
+                    declarations = "$declarations \n $declaration"
+                }
             }
+            holder.view.declarationsValue.text = declarations
         }
-        holder.view.declarationsValue.text = declarations*/
+
+        else if (feed.elements.get(position) is Package) {
+            // handle package element type
+        }
     }
 }
