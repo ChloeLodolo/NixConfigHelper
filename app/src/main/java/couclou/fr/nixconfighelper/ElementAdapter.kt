@@ -10,36 +10,21 @@ import java.lang.reflect.Type
 
 class ElementAdapter: JsonDeserializer<Element> {
     @RequiresApi(Build.VERSION_CODES.P)
+
     override fun deserialize(
-        json: JsonElement,
-        typeOfT: Type,
-        context: JsonDeserializationContext
-    ): Element {
-        val jsonObject = json.asJsonObject
-        val configType = jsonObject.get("configurationType").asString.capitalize()
+        json: JsonElement?,
+        typeOfT: Type?,
+        context: JsonDeserializationContext?
+    ): Element? {
+        val jsonObject = json?.asJsonObject
+        val configType = jsonObject?.get("configurationType")?.asString?.capitalize()
         println(jsonObject)
         try {
-            val fullName = typeOfT.typeName;
-            val packageText = fullName.substring(0, fullName.lastIndexOf(".") + 1)
-            return context.deserialize(jsonObject, Class.forName(packageText + configType))
+            val fullName = typeOfT?.typeName;
+            val packageText = fullName?.substring(0, fullName.lastIndexOf(".") + 1)
+            return context?.deserialize(jsonObject, Class.forName(packageText + configType))
         } catch (cnfe: ClassNotFoundException) {
             throw JsonParseException("Unknown element type : $cnfe")
         }
-
-        /*when (type) {
-            "option" ->
-                try {
-                    return context.deserialize(jsonObject, Class.forName("Option"))
-                } catch (cnfe: ClassNotFoundException) {
-                    throw JsonParseException("Unknow element type : $type $cnfe")
-                }
-            "package" ->
-                try {
-                    return context.deserialize(jsonObject, Class.forName("Package"))
-                } catch (cnfe: ClassNotFoundException) {
-                    throw JsonParseException("Unknow element type : $type $cnfe")
-                }
-            else -> return Element()
-        }*/
     }
 }
