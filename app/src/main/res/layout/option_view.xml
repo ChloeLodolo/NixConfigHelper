@@ -22,7 +22,7 @@
             app:layout_constraintGuide_percent="0.3" />
 
         <TextView
-            android:id="@+id/keynameTitle"
+            android:id="@+id/option_keynameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -33,17 +33,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/keynameValue"
+            android:id="@+id/option_keynameValue"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="keynameValue"
-            app:layout_constraintBottom_toBottomOf="@+id/keynameTitle"
+            app:layout_constraintBottom_toBottomOf="@+id/option_keynameTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/keynameTitle"
+            app:layout_constraintTop_toTopOf="@+id/option_keynameTitle"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
@@ -52,8 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Type :"
-            app:layout_constraintStart_toStartOf="@+id/keynameTitle"
-            app:layout_constraintTop_toBottomOf="@+id/keynameValue" />
+            app:layout_constraintStart_toStartOf="@+id/option_keynameTitle"
+            app:layout_constraintTop_toBottomOf="@+id/option_keynameValue" />
 
         <TextView
             android:id="@+id/typeValue"
@@ -65,7 +65,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/typeTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/keynameValue"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/typeTitle"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -88,7 +88,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/readOnlyTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/typeValue"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/readOnlyTitle"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -111,12 +111,12 @@
             app:layout_constraintBottom_toBottomOf="@+id/defaultValueTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/readOnlyValue"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/defaultValueTitle"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/descriptionTitle"
+            android:id="@+id/option_descriptionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -125,17 +125,17 @@
             app:layout_constraintTop_toBottomOf="@+id/defaultValueValue" />
 
         <TextView
-            android:id="@+id/descriptionValue"
+            android:id="@+id/option_descriptionValue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="descriptionValue"
-            app:layout_constraintBottom_toBottomOf="@+id/descriptionTitle"
+            app:layout_constraintBottom_toBottomOf="@+id/option_descriptionTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/defaultValueValue"
-            app:layout_constraintTop_toTopOf="@+id/descriptionTitle"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/option_descriptionTitle"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -144,8 +144,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Declarations :"
-            app:layout_constraintStart_toStartOf="@+id/descriptionTitle"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionValue" />
+            app:layout_constraintStart_toStartOf="@+id/option_descriptionTitle"
+            app:layout_constraintTop_toBottomOf="@+id/option_descriptionValue" />
 
         <TextView
             android:id="@+id/declarationsValue"
@@ -157,7 +157,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/declarationsTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/descriptionValue"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/declarationsTitle"
             app:layout_constraintVertical_bias="1.0" />
 

@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchJson(query: String, library: String) {
-        val url = "https://nix-config.nicolasguilloux.eu/api/channels/nixos-20.03/$library/search?query=$query"
+        val url = "https://nix-config.nicolasguilloux.eu/api/channels/nixos-20.03/${library}search?query=$query"
         val request = Request.Builder().url(url).build()
         val client = OkHttpClient()
         client.newCall(request).enqueue(object: Callback {

@@ -1,6 +1,7 @@
 package couclou.fr.nixconfighelper
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
